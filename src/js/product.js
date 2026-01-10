@@ -1,7 +1,7 @@
 import { getLocalStorage, setLocalStorage } from './utils.mjs'; // import utility function to set local storage but it also suppoe to get it (fixed)
 import ProductData from './ProductData.mjs';
 
-const dataSource = new ProductData('tents');
+const dataSource = new ProductData("tents");
 
 function addProductToCart(product) {
   /* setLocalStorage('so-cart', product); This is incorrect, it overwrites the cart
@@ -25,5 +25,5 @@ async function addToCartHandler(e) {
 
 // add listener to Add to Cart button
 document
-  .getElementById('addToCart')
-  .addEventListener('click', addToCartHandler);
+  .getElementById("addToCart")
+  .addEventListener("click", addToCartHandler);
