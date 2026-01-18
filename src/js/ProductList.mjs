@@ -1,4 +1,4 @@
-import { renderListTemplates } from "./utils.mjs";
+import { renderListWithTemplate } from "./utils.mjs";
 
 //template function for product cards
 function productCardTemplate(product){
@@ -30,6 +30,6 @@ export default class ProductList {
     }
 
     renderList(list) {
-    renderListTemplates(productCardTemplate, this.listElement, list, 'beforeend', true);
+    renderListWithTemplate(productCardTemplate, this.listElement, list, 'beforeend', true);
 }
 }
