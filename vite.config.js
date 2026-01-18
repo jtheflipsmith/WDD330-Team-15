@@ -19,4 +19,8 @@ export default defineConfig({
       },
     },
   },
+
+  preview: {
+    allowedHosts: ['wdd330-team-15-collaborators.onrender.com'],
+  },
 });
