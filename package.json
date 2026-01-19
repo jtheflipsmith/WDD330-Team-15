@@ -3,8 +3,9 @@
   "version": "2.0.0",
   "description": "Boilerplate for WDD 330 SleepOutside project",
   "main": "main.js",
+  "type": "module",
   "scripts": {
-    "start": "npm run build && vite preview --host 0.0.0.0",
+    "start": "vite",
     "build": "vite build --emptyOutDir",
     "lint": "eslint *.js src/**/*.js",
     "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\"",
@@ -33,14 +34,5 @@
     "last 3 opera versions",
     "last 3 ios_saf versions",
     "last 3 safari versions"
-  ],
-  "dependencies": {
-    "axios": "^1.13.2",
-    "bcryptjs": "^3.0.3",
-    "cookie-parser": "^1.4.7",
-    "dotenv": "^17.2.3",
-    "ejs": "^3.1.10",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3"
-  }
+  ]
 }
