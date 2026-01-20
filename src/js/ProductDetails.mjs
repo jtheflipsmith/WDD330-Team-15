@@ -29,11 +29,11 @@ export default class ProductDetails {
   renderProductDetails() {
     // Brand <h3>
     document.querySelector(".product-detail h3").textContent =
-      this.product.Brand;
+      this.product.NameWithoutBrand;
 
     // Name <h2>
     document.querySelector(".product-detail h2").textContent =
-      this.product.NameWithoutBrand;
+      this.product.Name;
 
     // Image
     document
@@ -45,11 +45,11 @@ export default class ProductDetails {
       `$${this.product.FinalPrice}`;
 
     // Color
-    document.querySelector(".product__color").textContent = this.product.Colors;
+    document.querySelector(".product__color").textContent = this.product.ColorName;
 
     // Description
-    document.querySelector(".product__description").textContent =
-      this.product.Description;
+    document.querySelector(".product__description").innerHTML =
+      this.product.DescriptionHtmlSimple;
 
     // Update Add to Cart button ID
     document
