@@ -1,59 +1,23 @@
-import { setLocalStorage } from "./utils.mjs";
-
-export default class ProductDetails {
-  constructor(productId, dataSource) {
-    this.productId = productId;
-    this.product = {};
-    this.dataSource = dataSource;
+function convertToJson(res) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error("Bad Response");
   }
+}
 
-  async init() {
-    // Get product data
-    this.product = await this.dataSource.findProductById(this.productId);
-
-    // Display product details
-    this.renderProductDetails();
-
-    // Add Add-to-cart listener
-    document
-      .getElementById("addToCart")
-      .addEventListener("click", () => this.addProductToCart());
+export default class ProductData {
+  constructor(category) {
+    this.category = category;
+    this.path = `../json/${this.category}.json`;
   }
-
-  addProductToCart() {
-    const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
-    cartItems.push(this.product);
-    setLocalStorage("so-cart", cartItems);
+  getData() {
+    return fetch(this.path)
+      .then(convertToJson)
+      .then((data) => data);
   }
-
-  renderProductDetails() {
-    // Brand <h3>
-    document.querySelector(".product-detail h3").textContent =
-      this.product.Brand;
-
-    // Name <h2>
-    document.querySelector(".product-detail h2").textContent =
-      this.product.NameWithoutBrand;
-
-    // Image
-    document
-      .querySelector(".product-detail img")
-      .setAttribute("src", this.product.Image);
-
-    // Price
-    document.querySelector(".product-card__price").textContent =
-      `$${this.product.FinalPrice}`;
-
-    // Color
-    document.querySelector(".product__color").textContent = this.product.Colors;
-
-    // Description
-    document.querySelector(".product__description").textContent =
-      this.product.Description;
-
-    // Update Add to Cart button ID
-    document
-      .getElementById("addToCart")
-      .setAttribute("data-id", this.product.Id);
+  async findProductById(id) {
+    const products = await this.getData();
+    return products.find((item) => item.Id === id);
   }
 }
