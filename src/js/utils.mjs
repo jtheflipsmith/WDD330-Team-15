@@ -38,7 +38,22 @@ export function renderListWithTemplate(
   if (clear) {
     parentElement.innerHTML = "";
   }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
 
-  const htmlString = list.map(templateFn);
-  parentElement.insertAdjacentHTML(position, htmlString.join(""));
+// update the cart count badge in the header
+export function updateCartCount() {
+  const badge = document.getElementById("cart-count");
+  if (!badge) return; // page might not have the badge yet
+
+  const cart = getLocalStorage("so-cart") || [];
+  const count = cart.length;
+
+  badge.textContent = count;
+
+  if (count === 0) {
+    badge.classList.add("zero");
+  } else {
+    badge.classList.remove("zero");
+  }
 }
