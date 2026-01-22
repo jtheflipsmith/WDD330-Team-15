@@ -3,8 +3,9 @@ import ProductList from "./ProductList.mjs";
 import { updateCartCount } from "./utils.mjs";
 const dataSource = new ProductData("tents");
 const listElement = document.querySelector(".product-list");
+const dataSource = new ProductData("tents");
 
-const productList = new ProductList("Tents", dataSource, listElement);
+const productList = new ProductList("tents", dataSource, listElement);
 productList.init();
 
 updateCartCount();
