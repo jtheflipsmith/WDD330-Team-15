@@ -4,7 +4,6 @@ import ProductDetails from "./ProductDetails.mjs";
 
 const productID = getParam("product");
 const dataSource = new ProductData("tents");
-const productId = getParam("product");
 
 // console.log(dataSource.findProductById(productID));
 
