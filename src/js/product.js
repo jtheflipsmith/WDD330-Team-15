@@ -3,8 +3,7 @@ import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 
 const dataSource = new ProductData("tents");
-
-// console.log(dataSource.findProductById(productID));
+const productID = getParam("product");
 
 const product = new ProductDetails(productID, dataSource);
 product.init();
