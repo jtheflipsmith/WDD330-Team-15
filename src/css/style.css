@@ -241,38 +241,6 @@ button {
   grid-column: 3;
 }
 
-.cart-link {
-  position: relative;
-  display: inline-block;
-}
-
-.cart-icon {
-  position: relative;
-  display: inline-block;
-}
-
-.cart-count {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: #e63946;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: bold;
-  min-width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
-.cart-count:empty,
-.cart-count.zero {
-  display: none;
-}
-
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
