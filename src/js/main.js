@@ -1,5 +1,9 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
+import loadHeaderFooter from "./header-footer.mjs";
+
+// Load header and footer
+loadHeaderFooter();
 
 const listElement = document.querySelector(".product-list");
 const dataSource = new ProductData("tents");
