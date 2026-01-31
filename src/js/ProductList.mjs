@@ -1,36 +1,41 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
+  const hasDiscount = product.FinalPrice < product.SuggestedRetailPrice;
+  const discount = hasDiscount
+    ? (((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100).toFixed(0)
+    : null;
+
   return `<li class="product-card">
-    <a href="product_pages/index.html?product=${product.Id}">
-      <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}">
-      <h2 class="card__brand">${product.Brand.Name}</h2>
-      <h3 class="card__name">${product.Name}</h3>
-      <p class="product-card__price">$${product.FinalPrice}</p>
-    </a>
-  </li>`;
+        <a href="/product_pages/?product=${product.Id}">
+            <img
+                src="${product.Images.PrimaryMedium}"
+                alt="Image of ${product.NameWithoutBrand}"
+            />
+            ${hasDiscount ? `<p class="product-card__discount">-${discount}%</p>` : ""}
+            <h3 class="card__brand">${product.Brand.Name}</h3>
+            <h2 class="card__name">${product.NameWithoutBrand}</h2>
+            ${hasDiscount ? `<p class="product-card__retail">$${product.SuggestedRetailPrice.toFixed(2)}</p>` : ""}
+            <p class="product-card__price">$${product.FinalPrice}</p>
+        </a>
+    </li>
+    `;
 }
 
 export default class ProductList {
-  constructor(category, dataSource, listElement) {
-    // This will make class reusable for different categories e.g tents, backpacks, sleeping bags, etc.
+  constructor(category, dataSource, listElement) { //listElement is the HTML element where we want to render the product list.
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
   }
 
   async init() {
-    // Load the product list from the JSON file
-    const list = await this.dataSource.getData();
-    // next, render the list – ** future **
+    const list = await this.dataSource.getData(this.category);
     this.renderList(list);
   }
 
-  renderList(productList) {
-    renderListWithTemplate(
-        productCardTemplate,
-        this.listElement,
-        productList,
-    );
+  renderList(list) {
+    // const filteredList = list.filter(product => product.FinalPrice !== 179.99); //to show only the 4 products that have product pages.Add commentMore actions
+    renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
 }
